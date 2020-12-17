@@ -37,4 +37,12 @@ As you can see, the perferct combination is 2000cp encoder with 15mm wheel, but 
 * LCD to display the live measure
 * Rotary optical encoder > 1000cpr
 
+#### Update
+
+So, I made my choices for electronics and mechanic.  
+I've choose NUCLEO board NUCLEO-L412KB, because this board is very small and it's very simple to do test with it because the board integrates the ST-LINK debugger/programmer. The board has STM32L412KBU6U ARM Cortex-M4 core.  
+For the display, I've chosse an basic i2C lcd with PCF8574T, I chosse this solution because with i2c I've less wire. The wheel will beattached to a rotary optical encoder (1000cpr), bought on AliExpress. And I'll need 3 push buttons, one for function enter/raz, and 2 others for +/-, used to select the saw thickness.
+
+Algorithm is very simple, when the system starts/reset, the user will have to indicates the saw thickness with plus or minus button, when the thickness is good user press on enter/raz button and the loop that measures (wood/stell/plastic...) is start. User has the possibility to raz the measure by pressing enter/raz button.
+
 Stay tuned for update ! :)
