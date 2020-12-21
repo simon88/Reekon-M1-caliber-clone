@@ -23,6 +23,7 @@
 #include "stm32l4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "user_function.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -199,11 +200,20 @@ void SysTick_Handler(void)
 
 /**
   * @brief This function handles EXTI line0 interrupt.
+  * 	   For ENT/RAZ button
   */
 void EXTI0_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI0_IRQn 0 */
-
+  //if valid_tickness isn't set program is in saw thickness mode
+  // user pressed ENT button to validate saw thickness
+  if( !valid_thickness ){
+	  valid_thickness = 1;
+  }else{
+	  //user press raz button
+	  length = 0;
+	  raz_measure(length);
+  }
   /* USER CODE END EXTI0_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
   /* USER CODE BEGIN EXTI0_IRQn 1 */
@@ -213,10 +223,15 @@ void EXTI0_IRQHandler(void)
 
 /**
   * @brief This function handles EXTI line3 interrupt.
+  * 	   PLUS button increment saw thickness
   */
 void EXTI3_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI3_IRQn 0 */
+	if( !valid_thickness ){
+		saw_thickness += 1;
+		display_saw_thickness(saw_thickness);
+	}
 
   /* USER CODE END EXTI3_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_3);
@@ -227,10 +242,15 @@ void EXTI3_IRQHandler(void)
 
 /**
   * @brief This function handles EXTI line4 interrupt.
+  * 	   MINUS button decrement saw thickness
   */
 void EXTI4_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI4_IRQn 0 */
+	if( !valid_thickness ){
+		saw_thickness -= 1;
+		display_saw_thickness(saw_thickness);
+	}
 
   /* USER CODE END EXTI4_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);

@@ -1,0 +1,2 @@
+user_function.c:14:6:display_saw_thickness	40	dynamic
+user_function.c:25:6:raz_measure	16	static

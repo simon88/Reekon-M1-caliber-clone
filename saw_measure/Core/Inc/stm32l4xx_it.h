@@ -39,6 +39,10 @@
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
 
+ extern volatile uint8_t valid_thickness;
+ extern volatile uint8_t saw_thickness;
+ extern volatile uint8_t length;
+
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/

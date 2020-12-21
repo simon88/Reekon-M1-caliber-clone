@@ -23,6 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "i2c-lcd.h"
+#include "user_function.h"
 #include <stdint.h>
 /* USER CODE END Includes */
 
@@ -33,6 +34,13 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
+#define DEFAULT_TICKNESS 5U
+
+volatile uint8_t valid_thickness = 0;
+volatile uint8_t saw_thickness = DEFAULT_TICKNESS;
+volatile uint32_t length = 0;
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -41,6 +49,7 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+
 I2C_HandleTypeDef hi2c1;
 
 UART_HandleTypeDef huart2;
@@ -79,7 +88,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+  lcd_init();
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -94,6 +103,15 @@ int main(void)
   MX_USART2_UART_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
+
+  /**
+   * @brief First loop, ask user saw thickness as long as
+   * 		user pressed ENTER/RAZ button
+   */
+  lcd_send_string("Ep lame :");
+  display_saw_thickness(saw_thickness);
+
+  while(!valid_thickness)
 
   /* USER CODE END 2 */
 
@@ -296,26 +314,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-/**
- * Interrupt for ENT/RAZ button
- */
-void EXTI0_IRQHandler(void){
 
-}
-
-/**
- * Interrupt for PLUS button
- */
-void EXTI3_IRQHandler(void){
-
-}
-
-/**
- * Interrupt for MINUS button
- */
-void EXTI4_IRQHandler(void){
-
-}
 /* USER CODE END 4 */
 
 /**
