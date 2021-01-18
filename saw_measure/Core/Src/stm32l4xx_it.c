@@ -57,7 +57,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-
+extern TIM_HandleTypeDef htim2;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -200,7 +200,6 @@ void SysTick_Handler(void)
 
 /**
   * @brief This function handles EXTI line0 interrupt.
-  * 	   For ENT/RAZ button
   */
 void EXTI0_IRQHandler(void)
 {
@@ -211,7 +210,7 @@ void EXTI0_IRQHandler(void)
 	  valid_thickness = 1;
   }else{
 	  //user press raz button
-	  length = 0;
+	  length =  0 - saw_thickness;
 	  raz_measure(length);
   }
   /* USER CODE END EXTI0_IRQn 0 */
@@ -223,7 +222,6 @@ void EXTI0_IRQHandler(void)
 
 /**
   * @brief This function handles EXTI line3 interrupt.
-  * 	   PLUS button increment saw thickness
   */
 void EXTI3_IRQHandler(void)
 {
@@ -242,7 +240,6 @@ void EXTI3_IRQHandler(void)
 
 /**
   * @brief This function handles EXTI line4 interrupt.
-  * 	   MINUS button decrement saw thickness
   */
 void EXTI4_IRQHandler(void)
 {
@@ -257,6 +254,21 @@ void EXTI4_IRQHandler(void)
   /* USER CODE BEGIN EXTI4_IRQn 1 */
 
   /* USER CODE END EXTI4_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM2 global interrupt.
+  */
+void TIM2_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM2_IRQn 0 */
+  display_measure(TIM2->CNT);
+  HAL_Delay(50);
+  /* USER CODE END TIM2_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim2);
+  /* USER CODE BEGIN TIM2_IRQn 1 */
+
+  /* USER CODE END TIM2_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

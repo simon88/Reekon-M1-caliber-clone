@@ -39,9 +39,9 @@
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
 
- extern volatile uint8_t valid_thickness;
- extern volatile uint8_t saw_thickness;
- extern volatile uint8_t length;
+ extern uint8_t volatile valid_thickness;
+ extern uint8_t volatile saw_thickness;
+ extern uint8_t volatile length;
 
 /* USER CODE END EC */
 
@@ -63,6 +63,7 @@ void SysTick_Handler(void);
 void EXTI0_IRQHandler(void);
 void EXTI3_IRQHandler(void);
 void EXTI4_IRQHandler(void);
+void TIM2_IRQHandler(void);
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */

@@ -23,7 +23,6 @@
 #ifndef __MAIN_H
 #define __MAIN_H
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -59,8 +58,6 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define VCP_TX_Pin GPIO_PIN_2
-#define VCP_TX_GPIO_Port GPIOA
 #define PLUS_Pin GPIO_PIN_3
 #define PLUS_GPIO_Port GPIOA
 #define PLUS_EXTI_IRQn EXTI3_IRQn
@@ -70,14 +67,6 @@ void Error_Handler(void);
 #define ENT_RAZ_Pin GPIO_PIN_0
 #define ENT_RAZ_GPIO_Port GPIOB
 #define ENT_RAZ_EXTI_IRQn EXTI0_IRQn
-#define SWDIO_Pin GPIO_PIN_13
-#define SWDIO_GPIO_Port GPIOA
-#define SWCLK_Pin GPIO_PIN_14
-#define SWCLK_GPIO_Port GPIOA
-#define VCP_RX_Pin GPIO_PIN_15
-#define VCP_RX_GPIO_Port GPIOA
-#define LD3_Pin GPIO_PIN_3
-#define LD3_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

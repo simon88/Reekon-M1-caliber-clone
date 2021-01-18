@@ -4,6 +4,7 @@ extern I2C_HandleTypeDef hi2c1;  //change your handler here accordingly
 
 #define SLAVE_ADDRESS_LCD 0x27 //change this according to ur setup
 
+
 void lcd_send_cmd (char cmd)
 {
   char data_u, data_l;
